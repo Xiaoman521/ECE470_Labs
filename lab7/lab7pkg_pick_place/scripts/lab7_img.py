@@ -121,8 +121,11 @@ class ImageProcess():
                 center_value.append([_center_x,_center_y])
                 # draw a circle on the center point
                 cv2.circle(img_copy, (int(_center_x), int(_center_y)), 7, [0,0,255], -1)
-                shape.append(cv2.matchShapes(self.contours_elip[0], contours[i * 2], 1, 0.0))
-                pass
+                if((cv2.matchShapes(self.contours_elip[0], contours[i * 2], 1, 0.0))<(cv2.matchShapes(self.contours_rect[0], contours[i * 2], 1, 0.0))):
+                     shape.append(1)
+                else:
+                     shape.append(0)
+
                 ############### Your Code End Here ###############
 
             else:
@@ -139,7 +142,7 @@ class ImageProcess():
                 
 
                 def distance(p1, p2):
-                    return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
+                    return np.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
                    
                 for point in contours[i*2]:
                     p = point[0]
@@ -185,10 +188,10 @@ def lab_imgproc(center_robot1, center_robot2):
     # two calibration images to calculate the image coordinate
     # with corresponding image coordinate and robot coordinate, 
     # a linear transformation between image coordinate and robot coordinate can be computed
-    path_img_cali1 = '../img/img_cali_1.bmp'
-    path_img_cali2 = '../img/img_cali_2.bmp'
+    path_img_cali1 = '../img/1.png'
+    path_img_cali2 = '../img/2.png'
     # snapshot image saved by your camera
-    path_img_snap = '../img/img_snap.bmp'
+    path_img_snap = '../img/3.png'
 
     # init ImageProcess class
     img_process = ImageProcess()
