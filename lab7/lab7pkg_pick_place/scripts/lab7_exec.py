@@ -34,12 +34,12 @@ def main():
 	# exit()
 	# 2. Free move the robot to obtain the robot coordinate (x,y) of first block
 	# TODO: get input of robot coordinate (x,y) of first block
-	center_robot1 = ()
+	center_robot1 = (-0,36587,-0.00783)
 	# 3. save second calibration image, enter 's' to save image with an input of image_name
 	# camera.display()
 	# 4. Free move the robot to obtain the robot coordinate (x,y) of second block
 	# TODO: get input of robot coordinate (x,y) of second block
-	center_robot2 = ()
+	center_robot2 = (-0.40976,-0.18128)
 
 	# 5. save snapshot image, randomly place at least 5 blocks
 	# camera.display()
@@ -62,12 +62,12 @@ def main():
 	# wait for the 'Start' button on the Teach Pendant
 	time.sleep(2)
 	center_values, shapes, thetas = lab_imgproc(center_robot1, center_robot2)
-	home_pos = lab_invk()
+	home_pos = lab_invk(-0.35208,-0.10276,0.082,0)
 	
 	# call inverse kinematics to compute joint values according to robot coordinate
 	# z values is assigned by users
-	dest_pos_rec = lab_invk()
-	dest_pos_eli = lab_invk()
+	dest_pos_rec = lab_invk(0.25491,-0.16145,0.01,0)
+	dest_pos_eli = lab_invk(0.353,-0.22261,0.01,0)
 
 	# do the move_arm and gripper operation to pick and place the block
 	# ur3e.move(dest_pos)
@@ -86,8 +86,8 @@ def main():
 		print(center_values)
 		x = center[0]
 		y = center[1]
-		start_pos_1 = lab_invk(x, y, 0.07, 0)
-		start_pos_2 = lab_invk(x, y, 0.15, 0)
+		start_pos_1 = lab_invk(x, y, 0.005, 0)
+		start_pos_2 = lab_invk(x, y, 0.061, 0)
 		print(start_pos_1)
 
 		print("3\n")
